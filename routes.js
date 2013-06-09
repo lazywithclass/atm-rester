@@ -1,5 +1,6 @@
 var lineHash = require('./lib/line-hash'),
     lineDetails = require('./lib/line-details'),
+    getLines = require('./lib/get-lines'),
     xmldoc = require('xmldoc');
 
 function format(stop, index) {
@@ -11,12 +12,18 @@ function format(stop, index) {
   return stop.attr;
 }
 
-module.exports.line = function(req, res) {
-  lineHash(req.params.number, function(hash) {
+module.exports.singleLine = function(req, res) {
+  lineHash(req.params.number, req.params.direction, function(hash) {
     lineDetails(hash, function(details) {
       var document = new xmldoc.XmlDocument(details);
       var stops = document.childrenNamed('stop').map(format);
       res.json(stops);
     });
+  });
+};
+
+module.exports.lineBothWays = function(req, res) {
+  getLines(req.params.number, function(lines) {
+    res.json(lines);
   });
 };
