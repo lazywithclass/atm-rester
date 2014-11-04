@@ -1,14 +1,10 @@
 {
-  "name": "atm-api",
   "version": "0.0.1",
-  "description": "API offering through a REST JSON interfaces the services offered by the atm-mi site",
-  "main": "server.js",
+  "description": "Providing a JSON REST API interface for the services offered by the atm-mi site",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": "",
-  "author": "alberto.zaccagni@lazywithclass.com",
+  "author": "me@lazywithclass.com",
   "license": "BSD",
   "dependencies": {
     "express": "~3.2.6",
