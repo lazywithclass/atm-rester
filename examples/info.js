@@ -1,7 +1,6 @@
 /*
-THERE ALSO THE TUBE!!!!
-http://www.atm-mi.it/it/Giromilano/Pagine/default.aspx?lvid=aecd9ac8-9040-45f7-b1547b961db0a10c-51acd293&wbt=nav&contextname=aecd9ac8-9040-45f7-b1547b961db0a10c-51acd293&vp=539&lst=0&lsi=0
-*/
+ http://www.atm-mi.it/it/Giromilano/Pagine/default.aspx?lvid=aecd9ac8-9040-45f7-b1547b961db0a10c-51acd293&wbt=nav&contextname=aecd9ac8-9040-45f7-b1547b961db0a10c-51acd293&vp=539&lst=0&lsi=0
+ */
 
 var http = require('http'),
     parseString = require('xml2js').parseString,
@@ -25,7 +24,12 @@ var req = http.request(postRequest, function(res) {
   res.on('end', function(data) { 
     if (data) buffer += data;
     parseString(buffer, function (err, result) {
-      console.log($(result.stop.stopinfo[0]).find('.tblttinfo').html());
+      var info = $(result.stop.stopinfo[0]).find('.tblttinfo').html();
+      if (!info) {
+	    console.log('no buses going');
+      } else {
+	    console.log(info);
+      }
     });
   });
 });
